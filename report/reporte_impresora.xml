@@ -36,24 +36,42 @@
 
               
                 <div class="page" style="width: 80mm; height: 210mm; font-size: 10px;">
-                    
+                    <p style="margin-bottom: 1px;"><strong> <t t-esc="doc.name"/></strong></p>
+                    <!-- <t t-set="fecha_impresion" t-value="python:__import__('datetime').datetime.now()"/>
+                    <p style="margin-bottom: 2px;">
+                        <t t-esc="formatLang(fecha_impresion, date_format='dd/MM/yyyy HH:mm')"/>
+                    </p> -->
+
+
                     <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
                         <p style="margin: 2px;">DOCUMENTO NO VALIDO COMO FACTURA</p>
-                        <p style="margin: 2px;">Magnolias</p>
-                        <p style="margin: 2px;"><strong><t t-esc="doc.company_id.name"/></strong></p>
+                        <p style="margin: 2px;"><strong>Magnolias</strong></p>
+                        <!-- <p style="margin: 2px;"><strong><t t-esc="doc.company_id.name"/></strong></p>
                         <p style="margin: 2px;">CUIT: <t t-esc="doc.company_id.l10n_ar_gross_income_number"/></p>
                         <p style="margin: 2px;"><t t-esc="doc.company_id.l10n_ar_afip_responsibility_type_id.name"/></p>
                         <p style="margin: 2px;">Ing. Brutos: <t t-esc="doc.company_id.l10n_ar_gross_income_number"/></p>
-                        <p style="margin: 2px;">Inicio de actividades: <t t-esc="doc.company_id.l10n_ar_afip_start_date"/></p>
-                        <p style="margin: 2px;">Dirección: <t t-esc="doc.company_id.street"/></p>
+                        <p style="margin: 2px;">Inicio de actividades: <t t-esc="doc.company_id.l10n_ar_afip_start_date"/></p>-->
+                        <p style="margin: 2px;"><t t-esc="doc.company_id.street"/></p> 
+                        <p style="margin: 2px;"><strong><u>CONTACTO</u></strong></p>
+                        <p style="margin: 2px;">WhatsApp:<t t-esc="doc.company_id.phone"/></p> 
+                        <p style="margin: 2px;">Instagram:magnolias.deco</p> 
+                        <p style="margin: 2px;">WEB:<t t-esc="doc.company_id.website"/></p> 
+                        <p style="margin: 2px;"><strong>TICKET DE CAMBIO</strong></p>
+
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: rigth; text-align: center;">
+                        <p style="margin: 2px;">Atendido por:<t t-esc="doc.user_id.name"/> </p>
+                        <p style="margin: 2px;">Cliente:<t t-esc="doc.partner_id.name"/> </p>
+                        
+                        
                     </div>
                     <!--tabla de descripciones-->
                     <table class="table table-sm" style="width: 100%; border-collapse: collapse;">
                             <thead>
                                 <tr style="border-bottom: 1px dashed;margin: 1px;">
-                                    
-                                    <th style="text-align: left;margin: 1px;">Descripción</th>
                                     <th style="text-align: right;margin: 1px;">Cant.</th>
+                                    <th style="text-align: left;margin: 1px;">Descripción</th>
+                                    
                                     <th style="text-align: right;margin: 1px;">Precio</th>
                                 </tr>
                             </thead>
@@ -63,18 +81,22 @@
                                 <t t-foreach="doc.invoice_line_ids" t-as="line">
                                     
                                     <tr>
-                                        
-                                        <td style="padding-top: 8px;margin: 1px;"><t t-esc="line.name"/></td>
                                         <td style="padding-top: 8px;text-align: right;margin: 1px;"><t t-esc="line.quantity"/></td>
+                                        <td style="padding-top: 8px;margin: 1px;"><t t-esc="line.name"/></td>
+                                        
                                         <td style="padding-top: 8px;text-align: right;margin: 1px;">$<t t-esc="line.price_total"/></td>
                                     </tr>
                                 </t>
                             </tbody>
                         </table>
-                        <!--subtotales-->                      
-                         <div style="text-align: right; margin-bottom: 2mm;">
-                            <p style="margin-bottom: 2px;"><strong>Subtotal:</strong> $<t t-esc="doc.amount_untaxed"/></p>
-                            <p style="margin-bottom: 2px;"><strong>Impuestos:</strong> $<t t-esc="doc.amount_tax"/></p>
+                        <!--subtotales--> 
+                         <div style="text-align: rigth; margin-bottom: 2mm;">
+                             <p style="margin-bottom: 2px;"><strong>Subtotal:</strong> $<t t-esc="doc.amount_untaxed"/></p>
+                            
+                         </div>                     
+                         <div style="text-align: center; margin-bottom: 2mm;">
+                            <!-- <p style="margin-bottom: 2px;"><strong>Subtotal:</strong> $<t t-esc="doc.amount_untaxed"/></p>
+                            <p style="margin-bottom: 2px;"><strong>Impuestos:</strong> $<t t-esc="doc.amount_tax"/></p> -->
                             <p style="margin-bottom: 2px;"><strong>Total:</strong>$<t t-esc="doc.amount_total"/></p>
                          </div>
   
@@ -106,7 +128,7 @@
                             <p style="margin-bottom: 1px;">Impuesto 21% $<t t-esc="doc.amount_tax"/></p><br/>
                         </div>
                     </t>
-                     <hr style="border: 1px dashed;"/>
+                    
                     <!-- Código QR y CAE -->
                     <div style="text-align: center;margin-bottom: 2mm;">
                          <!--<p>Contenido limpio QR: <t t-esc="doc.l10n_ar_afip_qr_code.split('?p=')[1]"/></p>-->

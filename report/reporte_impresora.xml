@@ -22,8 +22,8 @@
                     font-size: 10px !important;
                 }
                 .page {
-                    width: 80mm;
-                    height: 210mm;
+                    width: 56mm;
+                    height: 200mm;
                     font-size: 10px;
                 }
                 p, div, table {
@@ -33,7 +33,7 @@
                 
 
               
-                <div class="page" style="width: 80mm; height: 210mm; font-size: 10px;">
+                <div class="page" style="width: 56mm; height: 200mm; font-size: 10px;">
                     Fecha: <span t-esc="time.strftime('%d/%m/%Y %H:%M:%S')"/>
                     <p style="margin-bottom: 1px;">N°: <t t-esc="doc.name"/></p>
                    

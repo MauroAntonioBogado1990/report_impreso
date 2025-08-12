@@ -34,7 +34,7 @@
 
               
                 <div class="page" style="width: 80mm; height: 210mm; font-size: 10px;">
-                    Fecha<span t-esc="time.strftime('%d/%m/%Y %H:%M:%S')"/>
+                    Fecha: <span t-esc="time.strftime('%d/%m/%Y %H:%M:%S')"/>
                     <p style="margin-bottom: 1px;">N°: <t t-esc="doc.name"/></p>
                    
 

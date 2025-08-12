@@ -8,8 +8,6 @@
 
 
             <t t-call="web.external_layout">
-             <!-- <t t-set="hide_header_footer" t-value="True"/> -->
-
 
 
              
@@ -36,21 +34,14 @@
 
               
                 <div class="page" style="width: 80mm; height: 210mm; font-size: 10px;">
-                    <p style="margin-bottom: 1px;"><strong> <t t-esc="doc.name"/></strong></p>
-                    <!-- <t t-set="fecha_impresion" t-value="python:__import__('datetime').datetime.now()"/>
-                    <p style="margin-bottom: 2px;">
-                        <t t-esc="formatLang(fecha_impresion, date_format='dd/MM/yyyy HH:mm')"/>
-                    </p> -->
+                    Fecha<span t-esc="time.strftime('%d/%m/%Y %H:%M:%S')"/>
+                    <p style="margin-bottom: 1px;">N°: <t t-esc="doc.name"/></p>
+                   
 
 
                     <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
                         <p style="margin: 2px;">DOCUMENTO NO VALIDO COMO FACTURA</p>
-                        <p style="margin: 2px;"><strong>Magnolias</strong></p>
-                        <!-- <p style="margin: 2px;"><strong><t t-esc="doc.company_id.name"/></strong></p>
-                        <p style="margin: 2px;">CUIT: <t t-esc="doc.company_id.l10n_ar_gross_income_number"/></p>
-                        <p style="margin: 2px;"><t t-esc="doc.company_id.l10n_ar_afip_responsibility_type_id.name"/></p>
-                        <p style="margin: 2px;">Ing. Brutos: <t t-esc="doc.company_id.l10n_ar_gross_income_number"/></p>
-                        <p style="margin: 2px;">Inicio de actividades: <t t-esc="doc.company_id.l10n_ar_afip_start_date"/></p>-->
+                        <p style="margin: 2px;"><strong><u><t t-esc="doc.company_id.name"/></u></strong></p>
                         <p style="margin: 2px;"><t t-esc="doc.company_id.street"/></p> 
                         <p style="margin: 2px;"><strong><u>CONTACTO</u></strong></p>
                         <p style="margin: 2px;">WhatsApp:<t t-esc="doc.company_id.phone"/></p> 
@@ -95,8 +86,7 @@
                             
                          </div>                     
                          <div style="text-align: center; margin-bottom: 2mm;">
-                            <!-- <p style="margin-bottom: 2px;"><strong>Subtotal:</strong> $<t t-esc="doc.amount_untaxed"/></p>
-                            <p style="margin-bottom: 2px;"><strong>Impuestos:</strong> $<t t-esc="doc.amount_tax"/></p> -->
+                            
                             <p style="margin-bottom: 2px;"><strong>Total:</strong>$<t t-esc="doc.amount_total"/></p>
                          </div>
   

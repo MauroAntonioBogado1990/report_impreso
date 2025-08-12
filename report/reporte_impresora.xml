@@ -8,7 +8,7 @@
 
 
             <t t-call="web.external_layout">
-             <t t-set="hide_header_footer" t-value="True"/>
+             <!-- <t t-set="hide_header_footer" t-value="True"/> -->
 
 
 
@@ -37,53 +37,18 @@
               
                 <div class="page" style="width: 80mm; height: 210mm; font-size: 10px;">
                     
-                  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                        <!-- Información de la empresa alineada a la izquierda -->
-                       <img t-if="doc.company_id.logo" t-att-src="image_data_uri(doc.company_id.logo)" style="max-width: 100px;display: flex; max-height: 100px;text-align:left;" alt="Logo"/> 
-                        <!-- <div style="flex: 1; text-align: right;">
-                            <img t-att-src="'/web/image/' + str(doc.company_id.id) + '/logo'" alt="Logo Empresa" style="width: 40mm; height: auto;"/>
-                        </div> -->
-                         <div style="flex: 0;">
-                            <p style="margin: 2px;"><strong><t t-esc="doc.company_id.name"/></strong></p>
-                            <p style="margin: 2px;">CUIT : <t t-esc="doc.company_id.l10n_ar_gross_income_number"/></p>
-                            <p style="margin: 2px;"><t t-esc="doc.company_id.l10n_ar_afip_responsibility_type_id.name"/></p>
-                            <p style="margin: 2px;">Ing. Brutos : <t t-esc="doc.company_id.l10n_ar_gross_income_number"/></p>
-                            <p style="margin: 2px;">Inicio de actividades : <t t-esc="doc.company_id.l10n_ar_afip_start_date"/></p>
-                            <p style="margin: 2px;">Dirección : <t t-esc="doc.company_id.street"/></p>
-                        </div>
-
-                        
+                    <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                        <p style="margin: 2px;">DOCUMENTO NO VALIDO COMO FACTURA</p>
+                        <p style="margin: 2px;">Magnolias</p>
+                        <p style="margin: 2px;"><strong><t t-esc="doc.company_id.name"/></strong></p>
+                        <p style="margin: 2px;">CUIT: <t t-esc="doc.company_id.l10n_ar_gross_income_number"/></p>
+                        <p style="margin: 2px;"><t t-esc="doc.company_id.l10n_ar_afip_responsibility_type_id.name"/></p>
+                        <p style="margin: 2px;">Ing. Brutos: <t t-esc="doc.company_id.l10n_ar_gross_income_number"/></p>
+                        <p style="margin: 2px;">Inicio de actividades: <t t-esc="doc.company_id.l10n_ar_afip_start_date"/></p>
+                        <p style="margin: 2px;">Dirección: <t t-esc="doc.company_id.street"/></p>
                     </div>
-
-
-                    <hr style="border: 1px dashed;"/>
-
-                    <!-- Datos del cliente -->
-                    <div style="margin-bottom: 2mm;">
-                        
-                         <p style="margin-bottom: 1px;"><strong> <t t-esc="doc.l10n_latam_document_type_id.name"/></strong></p>
-                        <p style="margin-bottom: 1px;"><strong> <t t-esc="doc.name"/></strong></p>
-                        <p style="margin-bottom: 1px;"><strong> <t t-esc="doc.invoice_date"/></strong></p>
-                        
-                        <!-- <p style="margin-bottom: 2px;"><strong>Condición de IVA:</strong> <t t-esc="doc.partner_id.l10n_ar_afip_responsibility_type"/></p> -->
-                    </div>
-
-                    <hr style="border: 1px dashed;"/>
-                    
-                      <div style="margin-bottom: 2mm;">
-                        
-                         <p style="margin: 1px;">Fecha de servicio :<t t-esc="doc.l10n_ar_afip_service_start"/></p>
-                        
-                         <p style="margin-bottom: 1px;"><strong>Cliente:</strong> <t t-esc="doc.partner_id.name"/></p>
-                        
-                        
-                        <p style="margin-bottom: 1px;"><strong>Cond IVA:</strong> <t t-esc="doc.partner_id.l10n_ar_afip_responsibility_type_id.name"/></p>
-                        <!-- <p style="margin-bottom: 2px;"><strong>Condición de IVA:</strong> <t t-esc="doc.partner_id.l10n_ar_afip_responsibility_type"/></p> -->
-                    </div>
-
-                    <!-- Productos -->
-                    <div>
-                        <table class="table table-sm" style="width: 100%; border-collapse: collapse;">
+                    <!--tabla de descripciones-->
+                    <table class="table table-sm" style="width: 100%; border-collapse: collapse;">
                             <thead>
                                 <tr style="border-bottom: 1px dashed;margin: 1px;">
                                     
@@ -106,18 +71,27 @@
                                 </t>
                             </tbody>
                         </table>
+                        <!--subtotales-->                      
+                         <div style="text-align: right; margin-bottom: 2mm;">
+                            <p style="margin-bottom: 2px;"><strong>Subtotal:</strong> $<t t-esc="doc.amount_untaxed"/></p>
+                            <p style="margin-bottom: 2px;"><strong>Impuestos:</strong> $<t t-esc="doc.amount_tax"/></p>
+                            <p style="margin-bottom: 2px;"><strong>Total:</strong>$<t t-esc="doc.amount_total"/></p>
+                         </div>
+  
+
                     </div>
 
-                    <hr style="border: 1px dashed;"/>
+
+                    
+                    <!-- Productos -->
+                    <div>
+                        
+                    </div>
 
                     <!-- Totales -->
-                    <div style="text-align: right; margin-bottom: 2mm;">
-                        <p style="margin-bottom: 2px;"><strong>Subtotal:</strong> $<t t-esc="doc.amount_untaxed"/></p>
-                        <p style="margin-bottom: 2px;"><strong>Impuestos:</strong> $<t t-esc="doc.amount_tax"/></p>
-                        <p style="margin-bottom: 2px;"><strong>Total:</strong>$<t t-esc="doc.amount_total"/></p>
-                    </div>
+                   
 
-                    <hr style="border: 1px dashed;"/>
+                    
                        
 
                       <t t-if="doc.l10n_latam_document_type_id.l10n_ar_letter == 'B'">
@@ -136,9 +110,9 @@
                     <!-- Código QR y CAE -->
                     <div style="text-align: center;margin-bottom: 2mm;">
                          <!--<p>Contenido limpio QR: <t t-esc="doc.l10n_ar_afip_qr_code.split('?p=')[1]"/></p>-->
-                        <img t-if="doc.l10n_ar_afip_qr_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.l10n_ar_afip_qr_code, 200, 200)" alt="QR Code" style="height:100px"/>
+                        <!-- <img t-if="doc.l10n_ar_afip_qr_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.l10n_ar_afip_qr_code, 200, 200)" alt="QR Code" style="height:100px"/>
                        
-                       
+                        -->
                      
                       
 
@@ -149,20 +123,13 @@
                        <!-- <div id="qrcode" t-if="doc.display_qr_code">
                         <img t-if="doc.l10n_ar_afip_qr_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.l10n_ar_afip_qr_code, 400, 400)" alt="QR Code" style="height:100px"/>
                         </div>  -->
-                        <p style="margin: 2px;">CAE: <span t-field="doc.l10n_ar_afip_auth_code"/></p>
+                        <!-- <p style="margin: 2px;">CAE: <span t-field="doc.l10n_ar_afip_auth_code"/></p>
                          <p style="margin: 2px;">Fecha Vencimiento CAE:<t t-esc="doc.l10n_ar_afip_auth_code_due"/></p>
-                      
+                       
                     
-                     </div> 
-                    <div style="text-align: center;margin-bottom: 1mm;">
-                        
-                        <p style="margin: 1px;">
-                      4660-1625<br></br>
-                      info@murziez.com.ar<br></br>
-                      http://www.murziez.ar<br></br>
-                      CUIT:30633223943</p>
-                         
-                     </div>
+                     </div> -->
+
+                  
                      
                                
                       

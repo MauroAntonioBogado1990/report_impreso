@@ -106,21 +106,34 @@
                     
                        
 
-                      <t t-if="doc.l10n_latam_document_type_id.l10n_ar_letter == 'B'">
+                      <!-- <t t-if="doc.l10n_latam_document_type_id.l10n_ar_letter == 'B'">
                         <div style="text-align: left;margin-bottom: 1mm;">
                             <p style="margin-bottom: 1px;">"Regimen de transparencia fiscal al consumidor (ley 27.743)"</p>
                             <p style="margin-bottom: 1px;">IVA Contenido $<t t-esc="doc.amount_tax"/></p>
-                            <p style="margin-bottom: 1px;">Otros Impuestos indirectos <!--$<t t-esc="doc.amount_tax"/>--></p>
+                            <p style="margin-bottom: 1px;">Otros Impuestos indirectos </p>
                         </div>
                     </t>
                     <t t-if="doc.l10n_latam_document_type_id.l10n_ar_letter == 'A'">
                         <div style="text-align: left;margin-bottom: 1mm;">
                             <p style="margin-bottom: 1px;">Impuesto 21% $<t t-esc="doc.amount_tax"/></p><br/>
                         </div>
-                    </t>
+                    </t> -->
                     
                     <!-- Código QR y CAE -->
                     <div style="text-align: center;margin-bottom: 2mm;">
+                     <div id="qrcode">
+                       <img t-if="doc.l10n_ar_afip_qr_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.l10n_ar_afip_qr_code, 200, 200)" alt="QR Code" style="height:100px"/>
+                        </div>
+                        <t t-if="doc.l10n_ar_afip_auth_code">
+                            <p style="margin: 2px;">
+                            CAE: <span t-field="doc.l10n_ar_afip_auth_code"/>
+                                 <!--<span t-field="doc.afip_auth_code"/>-->
+                            </p>
+                            <p style="margin: 2px;">
+                            Fecha Vencimiento CAE: <t t-esc="doc.l10n_ar_afip_auth_code_due"/>
+                                                   <!-- <t t-esc="doc.afip_auth_code_due"/> -->
+                            </p>
+                        </t>
                          <!--<p>Contenido limpio QR: <t t-esc="doc.l10n_ar_afip_qr_code.split('?p=')[1]"/></p>-->
                         <!-- <img t-if="doc.l10n_ar_afip_qr_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.l10n_ar_afip_qr_code, 200, 200)" alt="QR Code" style="height:100px"/>
                        

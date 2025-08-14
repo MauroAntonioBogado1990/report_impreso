@@ -89,22 +89,29 @@
                             
                             <p style="margin-bottom: 2px;"><strong>Total:</strong>$<t t-esc="doc.amount_total"/></p>
                          </div>
+
+                        <!-- Código QR y CAE -->
+                    <div style="text-align: center;margin-bottom: 2mm;">
+                     <div id="qrcode">
+                          <img t-if="doc.l10n_ar_afip_qr_code" t-att-src="'/report/barcode/QR/%s?width=400&amp;height=400' % doc.l10n_ar_afip_qr_code" alt="QR Code" style="width:150px; height:150px"/>
   
+                     </div>
+                        <t t-if="doc.l10n_ar_afip_auth_code">
+                            <p style="margin: 2px;">
+                            CAE: <span t-field="doc.l10n_ar_afip_auth_code"/>
+                                 <!--<span t-field="doc.afip_auth_code"/>-->
+                            </p>
+                            <p style="margin: 2px;">
+                            Fecha Vencimiento CAE: <t t-esc="doc.l10n_ar_afip_auth_code_due"/>
+                                                   <!-- <t t-esc="doc.afip_auth_code_due"/> -->
+                            </p>
+                        </t>
+                         
+
+                </div>
 
                     </div>
 
-
-                    
-                    <!-- Productos -->
-                    <div>
-                        
-                    </div>
-
-                    <!-- Totales -->
-                   
-
-                    
-                       
 
                       <!-- <t t-if="doc.l10n_latam_document_type_id.l10n_ar_letter == 'B'">
                         <div style="text-align: left;margin-bottom: 1mm;">
@@ -119,47 +126,7 @@
                         </div>
                     </t> -->
                     
-                    <!-- Código QR y CAE -->
-                    <div style="text-align: center;margin-bottom: 2mm;">
-                     <div id="qrcode">
-                       <img t-if="doc.l10n_ar_afip_qr_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.l10n_ar_afip_qr_code, 200, 200)" alt="QR Code" style="height:100px"/>
-                        </div>
-                        <t t-if="doc.l10n_ar_afip_auth_code">
-                            <p style="margin: 2px;">
-                            CAE: <span t-field="doc.l10n_ar_afip_auth_code"/>
-                                 <!--<span t-field="doc.afip_auth_code"/>-->
-                            </p>
-                            <p style="margin: 2px;">
-                            Fecha Vencimiento CAE: <t t-esc="doc.l10n_ar_afip_auth_code_due"/>
-                                                   <!-- <t t-esc="doc.afip_auth_code_due"/> -->
-                            </p>
-                        </t>
-                         <!--<p>Contenido limpio QR: <t t-esc="doc.l10n_ar_afip_qr_code.split('?p=')[1]"/></p>-->
-                        <!-- <img t-if="doc.l10n_ar_afip_qr_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.l10n_ar_afip_qr_code, 200, 200)" alt="QR Code" style="height:100px"/>
-                       
-                        -->
-                     
-                      
-
-
-                     
-                       
-                       
-                       <!-- <div id="qrcode" t-if="doc.display_qr_code">
-                        <img t-if="doc.l10n_ar_afip_qr_code" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', doc.l10n_ar_afip_qr_code, 400, 400)" alt="QR Code" style="height:100px"/>
-                        </div>  -->
-                        <!-- <p style="margin: 2px;">CAE: <span t-field="doc.l10n_ar_afip_auth_code"/></p>
-                         <p style="margin: 2px;">Fecha Vencimiento CAE:<t t-esc="doc.l10n_ar_afip_auth_code_due"/></p>
-                       
                     
-                     </div> -->
-
-                  
-                     
-                               
-                      
-
-                </div>
             </t>
         </t>
     </t>
